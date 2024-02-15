@@ -33,15 +33,6 @@ if [ ! -f $CACHE_FILE ]; then
   fi
   tar xvf $BUILD_DIR/$IMAGE_MAGICK_FILE | indent
 
-  echo "----->  Downloading and Installing RSVG Delegate"
-  wget http://archive.ubuntu.com/ubuntu/pool/main/libr/librsvg/librsvg_2.52.5+dfsg.orig.tar.xz
-  tar -xvzf librsvg_2.52.5+dfsg.orig.tar.xz
-  cd librsvg_2.52.5+dfsg.orig.tar.xz
-  ./configure
-  make
-  sudo make install
-  cd ../
-
   echo "-----> Building ImageMagick"
   cd $IMAGE_MAGICK_DIR
   export CPPFLAGS="-I$INSTALL_DIR/include"

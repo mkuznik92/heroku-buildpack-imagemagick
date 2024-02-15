@@ -73,3 +73,7 @@ mkdir -p $(dirname $PROFILE_PATH)
 echo "export PATH=$RUNTIME_INSTALL_PATH/bin:\$PATH" >> $PROFILE_PATH
 echo "export LD_LIBRARY_PATH=$RUNTIME_INSTALL_PATH/lib:\$LD_LIBRARY_PATH" >> $PROFILE_PATH
 echo "export MAGICK_CONFIGURE_PATH=$RUNTIME_INSTALL_PATH" >> $PROFILE_PATH
+
+add-apt-repository ppa:inkscape.dev/stable
+sudo apt update
+sudo apt install inkscape

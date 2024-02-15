@@ -12,7 +12,7 @@ VENDOR_DIR="$BUILD_DIR/vendor"
 mkdir -p $VENDOR_DIR
 INSTALL_DIR="$VENDOR_DIR/imagemagick"
 mkdir -p $INSTALL_DIR
-IMAGE_MAGICK_VERSION="${IMAGE_MAGICK_VERSION:-7.0.10-62}"
+IMAGE_MAGICK_VERSION="${IMAGE_MAGICK_VERSION:-7.0.10-61}"
 CACHE_FILE="$CACHE_DIR/imagemagick-$IMAGE_MAGICK_VERSION.tar.gz"
 
 if [ ! -f $CACHE_FILE ]; then
@@ -32,6 +32,15 @@ if [ ! -f $CACHE_FILE ]; then
     exit 1;
   fi
   tar xvf $BUILD_DIR/$IMAGE_MAGICK_FILE | indent
+
+  echo "----->  Downloading and Installing RSVG Delegate"
+  wget http://archive.ubuntu.com/ubuntu/pool/main/libr/librsvg/librsvg_2.52.5+dfsg.orig.tar.xz
+  tar -xvzf librsvg_2.52.5+dfsg.orig.tar.xz
+  cd librsvg_2.52.5+dfsg.orig.tar.xz
+  ./configure
+  make
+  sudo make install
+  cd ../
 
   echo "-----> Building ImageMagick"
   cd $IMAGE_MAGICK_DIR
